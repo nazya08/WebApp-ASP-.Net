@@ -1,0 +1,16 @@
+@model WebApp.Models.Service
+
+@{
+    ViewBag.Title = "Деталі послуги";
+}
+
+<h2>Деталі послуги</h2>
+
+<div>
+    <h4>@Model.Name</h4>
+    <p>Опис: @Model.Description</p>
+    <p>Ціна: @Model.Price</p>
+</div>
+
+@Html.ActionLink("Редагувати", "Edit", new { id = Model.Id }) |
+@Html.ActionLink("Назад до списку", "Index")

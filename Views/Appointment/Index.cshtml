@@ -1,0 +1,24 @@
+@model IEnumerable<WebApp.Models.Appointment>
+
+<h1>Ваші записи</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Послуга</th>
+            <th>Опис</th>
+            <th>Дата</th>
+            <th>Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>@appointment.Service.Name</td>
+                <td>@appointment.Description</td>
+                <td>@appointment.AppointmentDate</td>
+                <td>@appointment.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

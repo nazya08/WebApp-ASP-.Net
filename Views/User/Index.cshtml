@@ -1,0 +1,24 @@
+@model IEnumerable<WebApp.Models.User>
+
+<h1>Список користувачів</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+            <th>Email</th>
+            <th>PhoneNumber</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.First_Name</td>
+                <td>@user.Second_Name</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>

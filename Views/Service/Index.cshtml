@@ -1,0 +1,13 @@
+@model IEnumerable<WebApp.Models.Service>
+
+<h1>Наші послуги</h1>
+<ul>
+    @foreach (var service in Model)
+    {
+        <li>
+            <h2>@service.Name</h2>
+            <p>@service.Description</p>
+            <p>Ціна: @service.Price грн</p>
+        </li>
+    }
+</ul>

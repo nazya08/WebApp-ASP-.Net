@@ -1,0 +1,16 @@
+@model WebApp.Models.Appointment
+
+<h1>Запис на послугу</h1>
+
+<form asp-action="Create" method="post">
+    <label>Послуга:</label>
+    <select asp-for="ServiceId" asp-items="@(new SelectList(ViewBag.Services, "Id", "Name"))"></select>
+
+    <label>Опис:</label>
+    <textarea asp-for="Description"></textarea>
+
+    <label>Дата:</label>
+    <input type="datetime-local" asp-for="AppointmentDate" />
+
+    <button type="submit">Записатися</button>
+</form>
