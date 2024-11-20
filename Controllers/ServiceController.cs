@@ -1,65 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace WebApp.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ServiceController : ControllerBase
+    [Route("services")]
+    public class ServicesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ServiceController(ApplicationDbContext context)
+        public ServicesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public IActionResult GetAllServices()
+        public async Task<IActionResult> Index()
         {
-            var services = _context.Services.ToList();
-            return Ok(services);
+            // Отримуємо всі сервіси з бази даних
+            var services = await _context.Services.ToListAsync();
+
+            // Повертаємо представлення та передаємо список сервісів
+            return View("~/Views/Service/Index.cshtml", services);
         }
 
+        // Детальний перегляд сервісу
         [HttpGet("{id}")]
-        public IActionResult GetService(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var service = _context.Services.Find(id);
-            if (service == null) return NotFound("Service not found");
-            return Ok(service);
-        }
+            // Отримуємо сервіс за ID з бази даних
+            var service = await _context.Services
+                .FirstOrDefaultAsync(s => s.Id == id);
 
-        [HttpPost]
-        public IActionResult CreateService(Service service)
-        {
-            _context.Services.Add(service);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(GetService), new { id = service.Id }, service);
-        }
+            if (service == null)
+            {
+                return NotFound(); // Якщо сервіс не знайдений
+            }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateService(int id, Service updatedService)
-        {
-            var service = _context.Services.Find(id);
-            if (service == null) return NotFound("Service not found");
-
-            service.Name = updatedService.Name;
-            service.Description = updatedService.Description;
-            service.Price = updatedService.Price;
-
-            _context.SaveChanges();
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteService(int id)
-        {
-            var service = _context.Services.Find(id);
-            if (service == null) return NotFound("Service not found");
-
-            _context.Services.Remove(service);
-            _context.SaveChanges();
-            return NoContent();
+            // Повертаємо представлення для детального перегляду
+            return View("~/Views/Service/Detail.cshtml", service);
         }
     }
 }
