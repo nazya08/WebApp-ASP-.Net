@@ -1,11 +1,11 @@
 @model List<WebApp.Models.Service>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Services</title>
+    <title>Наші Послуги</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 </head>
 <body>
@@ -13,9 +13,12 @@
         <div class="container">
             <div class="row justify-content-center text-center mb-4 mb-md-5">
                 <div class="col-xl-9 col-xxl-8">
-                    <span class="text-muted">Services Overview</span>
-                    <h2 class="display-5 fw-bold">Our Services</h2>
-                    <p class="lead">We offer a variety of professional services to cater to your needs. Choose the service that fits your requirements.</p>
+                    <span class="text-muted">Огляд послуг</span>
+                    <h2 class="display-5 fw-bold">Наші Послуги</h2>
+                    <p class="lead">
+                        Ми пропонуємо широкий спектр професійних послуг, які задовольнять ваші потреби. 
+                        Оберіть послугу, яка відповідає вашим вимогам.
+                    </p>
                 </div>
             </div>
 
@@ -23,7 +26,7 @@
             {
                 <div class="row g-0 align-items-center mb-4">
                     <div class="col-md-6">
-                        <img alt="Service Image" class="img-fluid" src="https://freefrontend.dev/assets/rectangle-wide.png" />
+                        <img alt="Зображення послуги" class="img-fluid" src="https://freefrontend.dev/assets/rectangle-wide.png" />
                     </div>
                     <div class="col-md-6">
                         <div class="row">
@@ -31,10 +34,10 @@
                                 <div class="p-md-3 p-xl-5 mt-4 mt-md-0">
                                     <h2 class="fw-semibold my-1">@service.Name</h2>
                                     <div class="text-muted">
-                                        Price: @service.Price.ToString("C")
+                                        <strong>Ціна:</strong> @service.Price.ToString("C")
                                     </div>
                                     <p class="my-4">@service.Description</p>
-                                    <a class="btn btn-primary" href="/services/@service.Id">Read more</a>
+                                    <a class="btn btn-primary" href="/services/@service.Id">Детальніше</a>
                                 </div>
                             </div>
                         </div>
